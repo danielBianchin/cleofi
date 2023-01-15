@@ -8,17 +8,26 @@
     <style>
         .ball {
             border-radius: 50%;
-            width: 100px;
-            height: 100px;
+            width: 130px;
+            height: 130px;
             border: 1px solid black;
             display: inline-flex;
+        }
+        #reset-game {
+            width: 110px;
+            height: 70px;
+            margin: 20px;
+
+        }
+        #rgb-color {
+            font-size: 0px;
+            margin: 0px;
         }
     </style>
 </head>
 <body>
-    <h1 id="title">Adivinhe a Cor</h1>
-    <p id="rgb-color"> (168, 34, 1) </p>
-    <p id="answer">Escolha uma cor</p>
+    <h1 id="title">Adivinhe a Cor, minha Flor!!</h1>
+    <p id="answer">Escolha, estou torcendo por ti. </p>
     <section>
         <div class="ball"></div>
         <div class="ball"></div>
@@ -29,6 +38,7 @@
     </section>
     <button id="reset-game">Reiniciar o jogo</button>
     <div id="score"></div>
+    <p id="rgb-color"> (168, 34, 1) </p>
 </body>
 <script>
     function generateColor() {
@@ -60,12 +70,12 @@
     for (let index = 0; index < circulo.length; index += 1) {
         circulo[index].addEventListener("click", (event) => { 
         if (event.target == circulo[circuloSorteado]) {
-            document.getElementById('answer').innerText = 'Acertou!';
+            document.getElementById('answer').innerText = 'É isso aí gatinha, você acertou!!! Reinicie o jogo pra ganhar mais mominhos!! ';
             document.getElementById('score').innerText = 'O placar é de: ' + (placar + 3) + ' mominhos';
             localStorage.setItem("placarStorage", (placar + 3));
             alert("Parabéns amor! :D")
         } else {
-            document.getElementById('answer').innerText = 'Errou! Tente novamente!';
+            document.getElementById('answer').innerText = 'Errou :( Tenta de novo cleofi...';
         }
     })
     }
