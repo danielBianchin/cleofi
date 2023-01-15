@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adivinhe a cor</title>
+    <style>
+        .ball {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+            display: inline-flex;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="title">Adivinhe a Cor</h1>
+    <p id="rgb-color"> (168, 34, 1) </p>
+    <p id="answer">Escolha uma cor</p>
+    <section>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+    </section>
+    <button id="reset-game">Reiniciar o jogo</button>
+    <div id="score"></div>
+</body>
+<script>
+    function generateColor() {
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+        }
+    
+    const circulo = document.getElementsByClassName('ball');
+    for (let index = 0; index < circulo.length; index += 1) {
+        circulo[index].style.backgroundColor = generateColor();
+    }
+
+    const circuloSorteado = Math.floor(Math.random() * 6)
+    document.getElementById('rgb-color').innerText = circulo[circuloSorteado].style.backgroundColor;
+
+    if (localStorage.length == 0) {
+        localStorage.setItem("placarStorage", 0);
+    }
+    
+    let placar = Number(localStorage.getItem("placarStorage"));
+    document.getElementById('score').innerText = 'O placar é de: ' + placar;
+    
+    
+
+    for (let index = 0; index < circulo.length; index += 1) {
+        circulo[index].addEventListener("click", (event) => { 
+        if (event.target == circulo[circuloSorteado]) {
+            document.getElementById('answer').innerText = 'Acertou!';
+            document.getElementById('score').innerText = 'O placar é de: ' + (placar + 3);
+            localStorage.setItem("placarStorage", (placar + 3));
+        } else {
+            document.getElementById('answer').innerText = 'Errou! Tente novamente!';
+        }
+    })
+    }
+
+    document.getElementById('reset-game').addEventListener("click", () => {
+        location.reload();
+    })
+
+</script>
+</html>
