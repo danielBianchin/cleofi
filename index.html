@@ -61,8 +61,9 @@
         circulo[index].addEventListener("click", (event) => { 
         if (event.target == circulo[circuloSorteado]) {
             document.getElementById('answer').innerText = 'Acertou!';
-            document.getElementById('score').innerText = 'O placar é de: ' + (placar + 3);
+            document.getElementById('score').innerText = 'O placar é de: ' + (placar + 3) + ' mominhos';
             localStorage.setItem("placarStorage", (placar + 3));
+            alert("Parabéns amor! :D")
         } else {
             document.getElementById('answer').innerText = 'Errou! Tente novamente!';
         }
